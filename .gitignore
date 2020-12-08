@@ -1,0 +1,5 @@
+/go.sum
+*.out
+*.log
+/main
+/blog
