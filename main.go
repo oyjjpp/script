@@ -3,6 +3,7 @@ package main
 import (
 	"os"
 
+	_ "github.com/oyjjpp/script/basics"
 	"github.com/oyjjpp/script/compress"
 	"github.com/oyjjpp/script/performance"
 )
