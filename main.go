@@ -1,45 +1,21 @@
 package main
 
-import (
-	"log"
-	"os"
-	"runtime"
-	"sync"
-
-	_ "github.com/oyjjpp/script/basics"
-	"github.com/oyjjpp/script/compress"
-	"github.com/oyjjpp/script/performance"
-)
+import "log"
 
 func main() {
-
-	syncConcurrency()
+	rs := pow(2, 3)
+	log.Println(rs)
 }
 
-// 压缩算法性能分析
-func testCompress() {
-	currentDirName, _ := os.Getwd()
-	logDirName := currentDirName + "/log/access.log"
-	compress.ReadLineTest(logDirName)
-}
-
-func testPerformance() {
-	performance.TestPerformance()
-}
-
-// syncConcurrency
-// 通过WaitGroup实现并发控制
-func syncConcurrency() {
-	var wg sync.WaitGroup
-
-	for i := 0; i < 5; i++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			log.Println(i)
-		}(i)
+func pow(x, y int) int {
+	rs := 1
+	for y > 0 {
+		// 基数
+		if y%2 == 1 {
+			rs = rs * x
+		}
+		x = x * x
+		y = y >> 1
 	}
-	wg.Wait()
-	// time.Sleep(5 * time.Second)
-	log.Println("finished ", runtime.NumGoroutine())
+	return rs
 }
